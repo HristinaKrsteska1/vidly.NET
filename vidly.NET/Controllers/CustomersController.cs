@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using vidly.NET.Models;
+using vidly.NET.ViewModels;
 
 namespace vidly.NET.Controllers
 {
@@ -21,6 +22,30 @@ namespace vidly.NET.Controllers
         {
             _dbContext.Dispose();
         }
+
+        // GET: Customers/NewCustomer
+        public ActionResult NewCustomer()
+        {
+            var membershipType = _dbContext.MembershipTypes.ToList();
+
+            var viewModel = new NewCustomerViewModel
+            {
+                MembershipTypes = membershipType
+            };
+
+            return View(viewModel);
+        }
+
+        //POST:Customers/Create
+        [HttpPost]
+        public ActionResult Create(Customer customer)
+        {
+            _dbContext.Customers.Add(customer);
+            _dbContext.SaveChanges();
+
+            return RedirectToAction("Index", "Customers");
+        }
+
         // GET: Customers
         public ActionResult Index()
         {
@@ -29,6 +54,7 @@ namespace vidly.NET.Controllers
             return View(customers);
         }
 
+        // GET: Customers/Details/Id
         public ActionResult Details(int id)
         {
             var customer = _dbContext.Customers.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == id);
