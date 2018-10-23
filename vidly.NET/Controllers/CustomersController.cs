@@ -66,5 +66,38 @@ namespace vidly.NET.Controllers
 
             return View(customer);
         }       
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var customer = _dbContext.Customers.SingleOrDefault(c => c.Id == id);
+
+            if(customer == null)
+            {
+                return HttpNotFound();
+            }
+
+            var viewModel = new NewCustomerViewModel
+            {
+                Customer = customer,
+                MembershipTypes = _dbContext.MembershipTypes.ToList()
+
+            };
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Customer customer)
+        {
+            var customerInDb = _dbContext.Customers.Single(c => c.Id == customer.Id);
+            customerInDb.Name = customer.Name;
+            customerInDb.Birthdate = customer.Birthdate;
+            customerInDb.MembershipType = customer.MembershipType;
+            customerInDb.IsSubscribedToNewsLetter = customer.IsSubscribedToNewsLetter;
+
+            _dbContext.SaveChanges();
+
+            return RedirectToAction("Index", "Customers");
+        }
     }
 }

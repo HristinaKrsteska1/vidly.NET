@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<vidly.NET.Models.Customer>
 
 @{
-                /**/
+    
 
-                ViewBag.Title = "Index";
-                Layout = "~/Views/Shared/_Layout.cshtml";
+     ViewBag.Title = "Index";
+     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Customers</h2>
@@ -28,22 +28,16 @@ else
         <tbody>
             @foreach (var customer in Model)
             {
-                <tr>
-                    <td>@Html.ActionLink(customer.Name, "Details", "Customers", new { id = customer.Id }, null)</td>
-                    <td>@customer.MembershipType.Name</td>
-                </tr>
+            <tr>
+                <td>@Html.ActionLink(customer.Name, "Details", "Customers", new { id = customer.Id }, null)</td>
+                <td>@customer.MembershipType.Name</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = customer.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id =customer.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = customer.Id })
+                </td>
+            </tr>
             }
         </tbody>
     </table>
 }
-
-@*<tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-        </td>
-    </tr>*@
