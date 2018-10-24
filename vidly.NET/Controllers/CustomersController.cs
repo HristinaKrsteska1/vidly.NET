@@ -40,6 +40,16 @@ namespace vidly.NET.Controllers
         [HttpPost]
         public ActionResult Create(Customer customer)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new NewCustomerViewModel
+                {
+                    Customer = customer,
+                    MembershipTypes = _dbContext.MembershipTypes.ToList()
+                };
+
+                return View("NewCustomer", viewModel);
+            }
             _dbContext.Customers.Add(customer);
             _dbContext.SaveChanges();
 
@@ -89,6 +99,7 @@ namespace vidly.NET.Controllers
         [HttpPost]
         public ActionResult Edit(Customer customer)
         {
+
             var customerInDb = _dbContext.Customers.Single(c => c.Id == customer.Id);
             customerInDb.Name = customer.Name;
             customerInDb.Birthdate = customer.Birthdate;
