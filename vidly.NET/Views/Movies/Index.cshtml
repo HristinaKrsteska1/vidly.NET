@@ -30,10 +30,15 @@ else
         <tbody>
             @foreach (var movie in Model)
             {
-                <tr>
-                    <td>@Html.ActionLink(movie.Name, "Details", "Movies", new { id = movie.Id }, null)</td>
-                    <td>@movie.Genre.Name</td>
-                </tr>
+            <tr>
+                <td>@Html.ActionLink(movie.Name, "Details", "Movies", new { id = movie.Id }, null)</td>
+                <td>@movie.Genre.Name</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = movie.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = movie.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = movie.Id })
+                </td>
+            </tr>
             }
         </tbody>
     </table>
