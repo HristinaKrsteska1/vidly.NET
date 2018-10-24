@@ -1,9 +1,13 @@
 ﻿@model IEnumerable<vidly.NET.Models.Movie>
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+                /**/
+
+                ViewBag.Title = "Index";
+                Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<h2>Movies</h2>
 
 @if (!Model.Any())
 {
@@ -11,11 +15,16 @@
 }
 else
 {
+    <button onclick="location.href='@Url.Action("NewMovie", "Movies")'" class="btn btn-dark"> New Movie</button>
+    <br />
+    <br />
+
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>Movie</th>
                 <th>Genre</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>

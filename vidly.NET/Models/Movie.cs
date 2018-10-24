@@ -18,8 +18,9 @@ namespace vidly.NET.Models
         public DateTime ReleaseDate { get; set; }
         [Required]
         public byte NumberInStock { get; set; }
-        [Required]
+        
         public Genre Genre { get; set; }
+        [Required]
         public byte GenreId { get; set; }
 
     }
