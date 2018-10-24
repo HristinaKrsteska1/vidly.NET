@@ -92,7 +92,7 @@ namespace vidly.NET.Controllers
             var customerInDb = _dbContext.Customers.Single(c => c.Id == customer.Id);
             customerInDb.Name = customer.Name;
             customerInDb.Birthdate = customer.Birthdate;
-            customerInDb.MembershipType = customer.MembershipType;
+            customerInDb.MembershipTypeId = customer.MembershipTypeId;
             customerInDb.IsSubscribedToNewsLetter = customer.IsSubscribedToNewsLetter;
 
             _dbContext.SaveChanges();
