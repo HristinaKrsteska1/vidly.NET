@@ -99,5 +99,35 @@ namespace vidly.NET.Controllers
 
             return RedirectToAction("Index", "Customers");
         }
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            var customer = _dbContext.Customers.SingleOrDefault(m => m.Id == id);
+
+            if (customer == null)
+            {
+                return HttpNotFound();
+            }
+
+            var viewModel = new NewCustomerViewModel
+            {
+                Customer = customer,
+                MembershipTypes = _dbContext.MembershipTypes.ToList()
+                
+            };
+
+            return View(viewModel);
+
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            var customerInDb = _dbContext.Customers.Single(m => m.Id == id);
+            _dbContext.Customers.Remove(customerInDb);
+            _dbContext.SaveChanges();
+
+            return RedirectToAction("Index", "Customers");
+        }
     }
 }

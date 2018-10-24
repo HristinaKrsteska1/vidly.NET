@@ -1,4 +1,4 @@
-﻿@model vidly.NET.ViewModels.MovieFromViewModel
+﻿@model vidly.NET.ViewModels.NewCustomerViewModel
 
 @{
     ViewBag.Title = "Delete";
@@ -17,44 +17,28 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Movie.Name)
+            @Html.DisplayFor(model => model.Customer.Name)
         </dd>
 
         <dt>
-            Date Added
+           Birthdate
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Movie.DateAdded)
+            @Html.DisplayFor(model => model.Customer.Birthdate)
         </dd>
 
         <dt>
-           Release Date
+           Membership type
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Movie.ReleaseDate)
-        </dd>
-
-        <dt>
-           Number in stock
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Movie.NumberInStock)
-        </dd>
-
-        <dt>
-            Genre
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Movie.Genre.Name)
+            @Html.DisplayFor(model => model.Customer.MembershipType.Name)
         </dd>
 
     </dl>
 
-    @using (Html.BeginForm("Delete", "Movies" )) {
+    @using (Html.BeginForm("Delete", "Customers")) {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
