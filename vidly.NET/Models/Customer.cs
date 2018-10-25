@@ -14,7 +14,9 @@ namespace vidly.NET.Models
         public string Name { get; set; }
 
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+        [Min18YearsIfAMember]
         public DateTime? Birthdate { get; set; }
+
         public bool IsSubscribedToNewsLetter { get; set; }
         public MembershipType MembershipType { get; set; }
         public byte MembershipTypeId { get; set; }
