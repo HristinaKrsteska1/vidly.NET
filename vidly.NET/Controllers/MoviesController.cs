@@ -48,8 +48,19 @@ namespace vidly.NET.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Movie movie)
         {
+            if(!ModelState.IsValid)
+            {
+                var viewModel = new MovieFromViewModel
+                {
+                    Movie = movie,
+                    Genres = _dbContext.Genres.ToList()
+                };
+                return View("NewMovie", viewModel);
+                
+            }
             _dbContext.Movies.Add(movie);
             _dbContext.SaveChanges();
 
