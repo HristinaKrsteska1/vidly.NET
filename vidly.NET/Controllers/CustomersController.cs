@@ -39,6 +39,7 @@ namespace vidly.NET.Controllers
 
         //POST:Customers/Create
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Customer customer)
         {
             if (!ModelState.IsValid)
