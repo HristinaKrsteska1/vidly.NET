@@ -42,7 +42,8 @@ namespace vidly.NET.Controllers
 
             var viewModel = new MovieFromViewModel
             {
-                Genres = genres,
+                Movie = new Movie(),
+                Genres = genres
             };
             return View(viewModel);
         }
@@ -55,7 +56,7 @@ namespace vidly.NET.Controllers
             {
                 var viewModel = new MovieFromViewModel
                 {
-                    Movie = movie,
+                    Movie=movie,
                     Genres = _dbContext.Genres.ToList()
                 };
                 return View("NewMovie", viewModel);
@@ -80,7 +81,7 @@ namespace vidly.NET.Controllers
 
             var viewModel = new MovieFromViewModel
             {
-                Movie = movie,
+                Movie=movie,   
                 Genres = _dbContext.Genres.ToList()
 
             };
@@ -115,8 +116,9 @@ namespace vidly.NET.Controllers
 
             var viewModel = new MovieFromViewModel
             {
-                Movie = movie,
+                Movie=movie,
                 Genres = _dbContext.Genres.ToList()
+                
             };
 
             return View(viewModel);

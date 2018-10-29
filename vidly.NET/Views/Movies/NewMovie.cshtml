@@ -9,6 +9,7 @@
 
 @using (Html.BeginForm("Create", "Movies")) 
 {
+   
     @Html.HiddenFor(m => m.Movie.Id)
     @Html.AntiForgeryToken()
     
