@@ -102,38 +102,7 @@ namespace vidly.NET.Controllers
             _dbContext.SaveChanges();
 
             return RedirectToAction("Index", "Movies");
-        }
-
-        [HttpGet]
-        public ActionResult Delete(int id)
-        {
-            var movie = _dbContext.Movies.SingleOrDefault(m => m.Id == id);
-
-            if(movie == null)
-            {
-                return HttpNotFound();
-            }
-
-            var viewModel = new MovieFromViewModel
-            {
-                Movie=movie,
-                Genres = _dbContext.Genres.ToList()
-                
-            };
-
-            return View(viewModel);
-        
-        }
-
-        [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            var movieInDb = _dbContext.Movies.Single(m => m.Id == id);
-            _dbContext.Movies.Remove(movieInDb);
-            _dbContext.SaveChanges();
-
-            return RedirectToAction("Index", "Movies");
-        }
+        }       
     }
 }
 

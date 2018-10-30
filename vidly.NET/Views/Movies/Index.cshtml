@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<vidly.NET.Models.Movie>
 
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = "Index";
-                Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Movies</h2>
@@ -19,7 +19,7 @@ else
     <br />
     <br />
 
-    <table class="table table-bordered table-hover">
+    <table id="movies" class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>Movie</th>
@@ -30,17 +30,43 @@ else
         <tbody>
             @foreach (var movie in Model)
             {
-            <tr>
-                <td>@Html.ActionLink(movie.Name, "Details", "Movies", new { id = movie.Id }, null)</td>
-                <td>@movie.Genre.Name</td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = movie.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = movie.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = movie.Id })
-                </td>
-            </tr>
+                <tr>
+                    <td>@Html.ActionLink(movie.Name, "Details", "Movies", new { id = movie.Id }, null)</td>
+                    <td>@movie.Genre.Name</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = movie.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = movie.Id }) |
+                        <button ="@movie.Id" class="btn-link js-delete">Delete</button>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>
+}
+
+@section scripts{
+    <script>
+        $(document).ready(function () {data-movie-id
+            var table = $("#movies").DataTable();
+
+            $("#movies").on("click", ".js-delete", function () {
+                var button = $(this);
+
+                bootbox.confirm("Are you sure you want to delete this movie?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/movies/" + button.attr("data-movie-id"),
+                            method: "DELETE",
+                            success: function () {
+                                table.row(button.parents("tr")).remove().draw();
+                            }
+                        });
+                    }
+                });
+            });
+        });
+      
+    </script>
+
 }
 

@@ -211,6 +211,8 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Dtos\CustomerDTO.cs" />
+    <Compile Include="Dtos\GenreDTO.cs" />
+    <Compile Include="Dtos\MembershipTypeDTO.cs" />
     <Compile Include="Dtos\MovieDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -520,7 +522,6 @@
     <Content Include="Views\Customers\Edit.cshtml" />
     <Content Include="Views\Movies\NewMovie.cshtml" />
     <Content Include="Views\Movies\Edit.cshtml" />
-    <Content Include="Views\Movies\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
