@@ -11,6 +11,10 @@ namespace vidly.NET.Models
 
         [Required]
         public string DrivingLicense { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string Phone { get; set; }
     }
 
     public class ExternalLoginListViewModel
@@ -67,6 +71,9 @@ namespace vidly.NET.Models
 
     public class RegisterViewModel
     {
+        [Required]
+        public string Phone { get; set; }
+
         [Required]
         public string DrivingLicense { get; set; }
 
