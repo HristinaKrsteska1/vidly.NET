@@ -8,6 +8,9 @@ namespace vidly.NET.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Required]
+        public string DrivingLicense { get; set; }
     }
 
     public class ExternalLoginListViewModel
