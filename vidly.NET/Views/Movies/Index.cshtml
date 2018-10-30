@@ -36,7 +36,7 @@ else
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = movie.Id }) |
                         @Html.ActionLink("Details", "Details", new { id = movie.Id }) |
-                        <button ="@movie.Id" class="btn-link js-delete">Delete</button>
+                        <button data-movie-id="@movie.Id" class="btn-link js-delete">Delete</button>
                     </td>
                 </tr>
             }
@@ -46,7 +46,7 @@ else
 
 @section scripts{
     <script>
-        $(document).ready(function () {data-movie-id
+        $(document).ready(function () {
             var table = $("#movies").DataTable();
 
             $("#movies").on("click", ".js-delete", function () {
