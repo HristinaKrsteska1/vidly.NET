@@ -71,6 +71,9 @@ namespace vidly.NET.Models
         public string DrivingLicense { get; set; }
 
         [Required]
+        public string Phone { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
