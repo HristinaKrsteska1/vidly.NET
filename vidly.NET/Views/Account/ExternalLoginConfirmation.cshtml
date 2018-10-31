@@ -25,10 +25,17 @@
         </div>
     </div>
 
-     <div class="form-group">
-        <label class="control-label col-md-2" for="DrivingLicense">Driving License</label>       
+    <div class="form-group">
+        <label class="control-label col-md-2" for="DrivingLicense">Driving License</label>
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.DrivingLicense, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Phone">Phone</label>
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
         </div>
     </div>
 
