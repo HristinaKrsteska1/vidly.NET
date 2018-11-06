@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using System;
+﻿using System;
 using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +7,7 @@ using System.Net.Http;
 using System.Web.Http;
 using vidly.NET.Dtos;
 using vidly.NET.Models;
+using AutoMapper;
 
 namespace vidly.NET.Controllers.API
 {
@@ -22,10 +22,17 @@ namespace vidly.NET.Controllers.API
         }
 
         //GET /api/customers
-        public IHttpActionResult GetCustomers()
-        {           
-            var customerDtos = _dbContext.Customers
-                .Include(c => c.MembershipType)
+        public IHttpActionResult GetCustomers( string query = null)
+        {
+            var customersQuery = _dbContext.Customers
+                .Include(c => c.MembershipType);
+
+            if (!String.IsNullOrWhiteSpace(query))
+            {
+                customersQuery = customersQuery.Where(c => c.Name.Contains(query));
+            }
+
+            var customerDtos = customersQuery
                 .ToList()
                 .Select(Mapper.Map<Customer, CustomerDTO>);
             return Ok(customerDtos);

@@ -28,7 +28,7 @@ namespace vidly.NET.Controllers.API
 
             foreach (var movie in movies)
             {
-                if(movie.NumberAvailable == 0)
+                if (movie.NumberAvailable == 0)
                 {
                     return BadRequest("Movie is not available");
                 }
@@ -43,7 +43,7 @@ namespace vidly.NET.Controllers.API
 
                 _dbContext.Rentals.Add(rental);
             }
-                     
+
             _dbContext.SaveChanges();
 
             return Ok();
