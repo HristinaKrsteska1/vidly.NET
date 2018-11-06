@@ -18,6 +18,6 @@ namespace vidly.NET.Models
 
         public DateTime DateCreated { get; set; }
 
-        public DateTime? DateAdded { get; set; }
+        public DateTime? DateReturned { get; set; }
     }
 }
